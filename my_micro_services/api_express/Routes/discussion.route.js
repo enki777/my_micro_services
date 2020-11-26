@@ -1,6 +1,6 @@
 let express = require('express');
 let router = express.Router();
-const { FindAllDiscussion, CreateDiscussion, FindOneDiscussion, DeleteDiscussion } = require('../Controllers/discussion.controller');
+const { FindAllDiscussion, CreateDiscussion, FindOneDiscussion, DeleteDiscussion, UpdateDiscussion } = require('../Controllers/discussion.controller');
 
 router.post('/index', function (req, res) {
     FindAllDiscussion(req, res)
@@ -18,5 +18,11 @@ router.post('/find/:id', function (req, res) {
 router.post('/delete/:id', function (req, res) {
     DeleteDiscussion(req, res);
 })
+
+router.post('/update/:id', function (req, res) {
+    UpdateDiscussion(req, res);
+})
+
+
 
 module.exports = router;

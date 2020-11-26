@@ -19,6 +19,11 @@ class Message extends Model
 
     protected $table = 'messages';
 
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+
     /**
      * The attributes excluded from the model's JSON form.
      *

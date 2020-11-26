@@ -24,16 +24,23 @@ const CreateDiscussion = async (req, res) => {
 };
 
 const UpdateDiscussion = async (req, res) => {
+    const id = req.params.id
+
+    const discussion = await Discussion.findByIdAndUpdate(id)
+
+    discussion.titre = req.body.titre
+    await discussion.save()
+        .then(() => res.status(201).json(discussion))
+        .catch(err => res.status(400).json('Error Message pas envoyer avec succes ' + err))
 
 };
 
 const DeleteDiscussion = async (req, res) => {
     const id = req.params.id
-    // const q = Discussion.findByIdAndDelete(id, () => {})
-    Discussion.findByIdAndDelete(id).exec()
-    // q.status(201).json("discussion supprimée avec succès.")
-    // q.then(() => res.status(201).json(q.titre))
-    res.status(201).json("discussion supprimée avec succès.")
+
+    Discussion.findByIdAndDelete(id)
+        .then(() => res.status(201).json("discussion supprimée avec succès."))
+        .catch(err => res.status(400).json('Error Message pas envoyer avec succes ' + err))
 };
 
 module.exports = { FindAllDiscussion, FindOneDiscussion, CreateDiscussion, UpdateDiscussion, DeleteDiscussion };

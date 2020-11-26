@@ -14,6 +14,13 @@ use Firebase\JWT\JWT;
 
 class UserController extends Controller
 {
+
+    public function profile()
+    {
+        $userMessages = User::find(Auth::id())->messages;
+        return (new Response($userMessages, 200))->header('Content-Type', 'application/json');
+    }
+
     public function store(Request $request)
     {
         $user = new User;

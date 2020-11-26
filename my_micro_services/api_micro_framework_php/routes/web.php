@@ -24,10 +24,14 @@ $router->post('/login', [
     'as' => 'login', 'uses' => 'AuthController@login'
 ]);
 
+$router->post('register', [
+    'uses' => 'UserController@store'
+]);
+
 $router->group(['prefix' => 'user',  'middleware' => 'auth',], function () use ($router) {
 
-    $router->post('register', [
-        'uses' => 'UserController@store'
+    $router->post('profile', [
+        'uses' => 'UserController@profile'
     ]);
 
     $router->post('update', [

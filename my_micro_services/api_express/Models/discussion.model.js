@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const DiscussionSchema = new mongoose.Schema({
     // _id: mongoose.Schema.Types.ObjectId,
-    titre: String, // String is shorthand for {type: String}
+    titre: {type: String, required: true}, // String is shorthand for {type: String}
     author: String,
     body: String,
     comments: [{ body: String, date: Date }],
